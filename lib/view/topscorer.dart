@@ -175,7 +175,7 @@ class _TopScorerState extends State<TopScorer> {
                   goalScModel[i + 1].name,
                   style: TextStyle(color: Colors.black, fontSize: 18),
                 ),
-                subtitle: Text("today 16:33"),
+                subtitle: Text(goalScModel[i + 1].team),
                 trailing: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
