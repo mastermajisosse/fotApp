@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 class Api {
   static final Api _api = Api._internal();
 
-  final String url = "api.myjson.com";
+  final String url = "raw.githubusercontent.com";
 
   factory Api() {
     return _api;

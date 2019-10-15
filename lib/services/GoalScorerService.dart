@@ -19,7 +19,9 @@ class GoalScorerService {
   Future<List<GoalScModel>> getLists() async {
     lists = new List();
     // await api.httpGet('bins/fyqiq').then((reponse) {
-    await api.httpGet('bins/f8uf6').then((reponse) {
+    await api
+        .httpGet('mastermajisosse/fotApp/master/justjson.json')
+        .then((reponse) {
       var data = jsonDecode(reponse.body);
       data["goalScorer"].forEach((l) {
         lists.add(GoalScModel().fromJson(l));

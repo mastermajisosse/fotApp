@@ -18,9 +18,11 @@ class ArticleService {
   Future<List<ArticleModal>> getLists() async {
     lists = new List();
     // await api.httpGet('bins/fyqiq').then((reponse) {
-    await api.httpGet('bins/f8uf6').then((reponse) {
+    await api
+        .httpGet('mastermajisosse/fotApp/master/justjson.json')
+        .then((reponse) {
       var data = jsonDecode(reponse.body);
-      data.forEach((l) {
+      data["news"].forEach((l) {
         lists.add(ArticleModal().fromJson(l));
       });
     });

@@ -37,17 +37,17 @@ class _TopScorerState extends State<TopScorer> {
     return Scaffold(
       body: callApi
           ? Center(child: CircularProgressIndicator())
-          :SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              headerUp(),
-              firstTop(),
-              restOfPlayers(),
-            ],
-          ),
-        ),
-      ),
+          : SafeArea(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    headerUp(),
+                    firstTop(),
+                    restOfPlayers(),
+                  ],
+                ),
+              ),
+            ),
     );
   }
 
@@ -109,7 +109,7 @@ class _TopScorerState extends State<TopScorer> {
                     gradient: LinearGradient(
                       begin: Alignment.bottomRight,
                       colors: [
-                        Colors.red[900].withOpacity(.9),
+                        Colors.black.withOpacity(.9),
                         Colors.black.withOpacity(.2),
                       ],
                     ),
