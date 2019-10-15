@@ -1,4 +1,5 @@
 import 'package:almarssad/data/GoalScorereModel.dart';
+import 'package:almarssad/services/GoalScorerService.dart';
 import 'package:flutter/material.dart';
 
 class TopScorer extends StatefulWidget {
@@ -7,10 +8,36 @@ class TopScorer extends StatefulWidget {
 }
 
 class _TopScorerState extends State<TopScorer> {
+  bool callApi = true;
+  GoalScorerService goalScorerService;
+  List<GoalScModel> goalScModel;
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      callApi = true;
+    });
+    goalScorerService = GoalScorerService();
+    goalScModel = new List();
+    goalScorerService.getLists().then((data) {
+      if (data.isEmpty) {
+        print('citykhawya');
+      }
+      setState(() {
+        goalScModel.addAll(data);
+        callApi = false;
+      });
+      // print(goalScModel[0].image);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: callApi
+          ? Center(child: CircularProgressIndicator())
+          :SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -31,7 +58,7 @@ class _TopScorerState extends State<TopScorer> {
       // color: Colors.red,
       decoration: BoxDecoration(
           image: DecorationImage(
-        image: AssetImage("assets/images/mo.jpg"),
+        image: NetworkImage(goalScModel[0].img),
         fit: BoxFit.cover,
       )),
       child: ClipRRect(
@@ -74,7 +101,7 @@ class _TopScorerState extends State<TopScorer> {
             child: Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                  image: AssetImage("assets/images/mo.jpg"),
+                  image: NetworkImage(goalScModel[0].img),
                   fit: BoxFit.cover,
                 )),
                 child: Container(
@@ -82,8 +109,8 @@ class _TopScorerState extends State<TopScorer> {
                     gradient: LinearGradient(
                       begin: Alignment.bottomRight,
                       colors: [
-                        Colors.red.withOpacity(.9),
-                        Colors.red.withOpacity(.2),
+                        Colors.red[900].withOpacity(.9),
+                        Colors.black.withOpacity(.2),
                       ],
                     ),
                   ),
@@ -95,7 +122,7 @@ class _TopScorerState extends State<TopScorer> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
                         Text(
-                          goalScrored[0].goals.toString() + " Goals",
+                          goalScModel[0].goals.toString() + " Goals",
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -105,7 +132,7 @@ class _TopScorerState extends State<TopScorer> {
                           height: 5,
                         ),
                         Text(
-                          goalScrored[0].name,
+                          goalScModel[0].name,
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w900,
@@ -115,7 +142,7 @@ class _TopScorerState extends State<TopScorer> {
                           height: 5,
                         ),
                         Text(
-                          goalScrored[0].team,
+                          goalScModel[0].team,
                           style: TextStyle(
                               color: Colors.white54,
                               fontWeight: FontWeight.w300,
@@ -132,27 +159,27 @@ class _TopScorerState extends State<TopScorer> {
         child: ListView.builder(
             shrinkWrap: true,
             primary: false,
-            itemCount: goalScrored.length - 1,
+            itemCount: goalScModel.length - 1,
             itemBuilder: (context, i) {
               return ListTile(
                 leading: Container(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      goalScrored[i + 1].rank.toString(),
+                      (i + 2).toString(),
                       style: TextStyle(color: Colors.black, fontSize: 24),
                     ),
                   ),
                 ),
                 title: Text(
-                  goalScrored[i + 1].name,
+                  goalScModel[i + 1].name,
                   style: TextStyle(color: Colors.black, fontSize: 18),
                 ),
                 subtitle: Text("today 16:33"),
                 trailing: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    goalScrored[i + 1].goals.toString(),
+                    goalScModel[i + 1].goals.toString(),
                     style: TextStyle(color: Colors.black, fontSize: 24),
                   ),
                 ),

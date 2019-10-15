@@ -67,7 +67,7 @@ class _HotArticleState extends State<HotArticle> {
                     Container(
                       width: double.infinity,
                       height: 270,
-                      child: Image.asset(
+                      child: Image.network(
                         article.image,
                         fit: BoxFit.cover,
                       ),
@@ -83,7 +83,7 @@ class _HotArticleState extends State<HotArticle> {
                         children: <Widget>[
                           ClipRRect(
                             borderRadius: BorderRadius.circular(50),
-                            child: Image.asset(
+                            child: Image.network(
                               article.imageAuthor,
                               width: 50,
                               height: 50,
