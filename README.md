@@ -14,4 +14,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
-extension : Paste JSON as Code ,Image preview ,Color Highlight, Error Lens, Code Time, Material Icon Theme, Pubspec Assist
+extension : Image preview ,Material Icon Theme
+
+link : 
+language : https://medium.com/flutter-community/flutter-internationalization-the-easy-way-using-provider-and-json-c47caa4212b2
